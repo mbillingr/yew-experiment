@@ -45,14 +45,14 @@ impl Component for Model {
 fn pretty_print(obj: &L, indent:usize) -> Html {
     match obj {
         L::Atom(x) => html!{
-            <div class="foo">
+            <span class="foo">
             {print_indented(x, indent)}
-            </div>
+            </span>
         },
         L::List(xs) => html!{
-            <div class="bar">
+            <div>
             {print_indented("(", indent)}
-            {for xs.iter().map(|x| pretty_print(x, indent))}
+            {for xs.iter().map(|x| pretty_print(x, indent + 1))}
             {print_indented(")", indent)}
             </div>
         },
